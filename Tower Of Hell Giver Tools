@@ -93,29 +93,10 @@ Login.TextColor3 = Color3.fromRGB(255, 255, 255)
 Login.TextSize = 29.000
 Login.MouseButton1Down:Connect(function()
 	if User.Text == "rayver" and Pass.Text == "scripts" then
-		script.Parent.Parent.status.Text = "Correct!"
-		script.Parent.Parent.status.TextColor3 = Color3.fromRGB(0, 255, 0)
-		wait(1)
 		LoginGui.Visible = false
 		OpenGui.Visible = true
-	else
-		script.Parent.Parent.status.Text = "Invalid Username/Password!"
-		script.Parent.Parent.status.TextColor3 = Color3.fromRGB(255, 0, 0)
 	end
 end)
-
-status.Name = "status"
-status.Parent = LoginGui
-status.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-status.BackgroundTransparency = 1.000
-status.BorderColor3 = Color3.fromRGB(0, 0, 0)
-status.BorderSizePixel = 0
-status.Position = UDim2.new(0.12411315, 0, 0.621546984, 0)
-status.Size = UDim2.new(0.662112594, 0, 0.0601895489, 0)
-status.Font = Enum.Font.SourceSansBold
-status.Text = ""
-status.TextColor3 = Color3.fromRGB(255, 255, 255)
-status.TextSize = 25.000
 
 Creator.Name = "Creator"
 Creator.Parent = LoginGui
