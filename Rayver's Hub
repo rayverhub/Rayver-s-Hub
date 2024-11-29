@@ -34,7 +34,7 @@ local Tab = Window:MakeTab({
 })
 
 local Section = Tab:AddSection({
-  Name = "LocalPlayer"
+  Name = "LocalPlayer (Reset if you want no High speed/jump)"
 })
 
 OrionLib:MakeNotification({
