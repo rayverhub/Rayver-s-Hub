@@ -27,6 +27,10 @@ local Section = Tab:AddSection({
   Name = "Im making my own hub! (Its not done yet)"
 })
 
+local Section = Tab:AddSection({
+  Name = "Discord: https://discord.gg/BYtC4aTw"
+})
+
 local Tab = Window:MakeTab({
   Name = "Main",
   Icon = "rbxassetid://4483345998",
