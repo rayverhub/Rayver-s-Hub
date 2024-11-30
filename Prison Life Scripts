@@ -1,0 +1,302 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local TextLabel = Instance.new("TextLabel")
+local AllGuns = Instance.new("TextButton")
+local Soon = Instance.new("TextButton")
+local Soon_2 = Instance.new("TextButton")
+local Soon_3 = Instance.new("TextButton")
+local Soon_4 = Instance.new("TextButton")
+local Soon_5 = Instance.new("TextButton")
+local Close = Instance.new("TextButton")
+local TextLabel_2 = Instance.new("TextLabel")
+local LoginGUI = Instance.new("Frame")
+local TextLabel_3 = Instance.new("TextLabel")
+local Close_2 = Instance.new("TextButton")
+local User = Instance.new("TextBox")
+local UICorner = Instance.new("UICorner")
+local Pass = Instance.new("TextBox")
+local UICorner_2 = Instance.new("UICorner")
+local TextLabel_4 = Instance.new("TextLabel")
+local Login = Instance.new("TextButton")
+local TextLabel_5 = Instance.new("TextLabel")
+local OpenGui = Instance.new("Frame")
+local Open = Instance.new("TextButton")
+
+--Properties:
+
+ScreenGui.Parent = game.CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = ScreenGui
+MainFrame.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0.342639595, 0, 0.237804875, 0)
+MainFrame.Size = UDim2.new(0.314720809, 0, 0.522357702, 0)
+MainFrame.Visible = false
+MainFrame.Active = true
+MainFrame.Draggable = true
+
+TextLabel.Parent = MainFrame
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(0, 0, -2.67177228e-07, 0)
+TextLabel.Size = UDim2.new(0.693548381, 0, 0.202947542, 0)
+TextLabel.Font = Enum.Font.SourceSansBold
+TextLabel.Text = "Prison Life | Scripts"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextSize = 33.000
+
+AllGuns.Name = "AllGuns"
+AllGuns.Parent = MainFrame
+AllGuns.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+AllGuns.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AllGuns.BorderSizePixel = 0
+AllGuns.Position = UDim2.new(0.072580643, 0, 0.322957188, 0)
+AllGuns.Size = UDim2.new(0.257914424, 0, 0.13275443, 0)
+AllGuns.Font = Enum.Font.SourceSansBold
+AllGuns.Text = "AllGuns"
+AllGuns.TextColor3 = Color3.fromRGB(255, 255, 255)
+AllGuns.TextSize = 24.000
+AllGuns.MouseButton1Down:Connect(function()
+for i,v in pairs(Workspace.Prison_ITEMS.giver:GetChildren()) do
+	
+lol = Workspace.Remote.ItemHandler:InvokeServer(v.ITEMPICKUP)
+print(lol)
+end
+end)
+
+Soon.Name = "Soon"
+Soon.Parent = MainFrame
+Soon.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Soon.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Soon.BorderSizePixel = 0
+Soon.Position = UDim2.new(0.072580643, 0, 0.556420207, 0)
+Soon.Size = UDim2.new(0.257914424, 0, 0.13275443, 0)
+Soon.Font = Enum.Font.SourceSansBold
+Soon.Text = "SOON!"
+Soon.TextColor3 = Color3.fromRGB(255, 255, 255)
+Soon.TextSize = 24.000
+
+Soon_2.Name = "Soon"
+Soon_2.Parent = MainFrame
+Soon_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Soon_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Soon_2.BorderSizePixel = 0
+Soon_2.Position = UDim2.new(0.373655915, 0, 0.556420207, 0)
+Soon_2.Size = UDim2.new(0.257914424, 0, 0.13275443, 0)
+Soon_2.Font = Enum.Font.SourceSansBold
+Soon_2.Text = "SOON!"
+Soon_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Soon_2.TextSize = 24.000
+
+Soon_3.Name = "Soon"
+Soon_3.Parent = MainFrame
+Soon_3.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Soon_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Soon_3.BorderSizePixel = 0
+Soon_3.Position = UDim2.new(0.373655915, 0, 0.322957188, 0)
+Soon_3.Size = UDim2.new(0.257914424, 0, 0.13275443, 0)
+Soon_3.Font = Enum.Font.SourceSansBold
+Soon_3.Text = "SOON!"
+Soon_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+Soon_3.TextSize = 24.000
+
+Soon_4.Name = "Soon"
+Soon_4.Parent = MainFrame
+Soon_4.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Soon_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Soon_4.BorderSizePixel = 0
+Soon_4.Position = UDim2.new(0.666666687, 0, 0.322957188, 0)
+Soon_4.Size = UDim2.new(0.257914424, 0, 0.13275443, 0)
+Soon_4.Font = Enum.Font.SourceSansBold
+Soon_4.Text = "SOON!"
+Soon_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+Soon_4.TextSize = 24.000
+
+Soon_5.Name = "Soon"
+Soon_5.Parent = MainFrame
+Soon_5.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Soon_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Soon_5.BorderSizePixel = 0
+Soon_5.Position = UDim2.new(0.666666687, 0, 0.556420207, 0)
+Soon_5.Size = UDim2.new(0.257914424, 0, 0.13275443, 0)
+Soon_5.Font = Enum.Font.SourceSansBold
+Soon_5.Text = "SOON!"
+Soon_5.TextColor3 = Color3.fromRGB(255, 255, 255)
+Soon_5.TextSize = 24.000
+
+Close.Name = "Close"
+Close.Parent = MainFrame
+Close.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close.BackgroundTransparency = 1.000
+Close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Close.BorderSizePixel = 0
+Close.Position = UDim2.new(0.876344085, 0, 0.0350194536, 0)
+Close.Size = UDim2.new(0.1046886, 0, 0.13275443, 0)
+Close.Font = Enum.Font.FredokaOne
+Close.Text = "X"
+Close.TextColor3 = Color3.fromRGB(255, 255, 255)
+Close.TextSize = 29.000
+Close.MouseButton1Down:Connect(function()
+	MainFrame.Visible = false
+	OpenGui.Visible = true
+end)
+
+TextLabel_2.Parent = MainFrame
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.Position = UDim2.new(0, 0, 0.821011424, 0)
+TextLabel_2.Size = UDim2.new(1, 0, 0.175710186, 0)
+TextLabel_2.Font = Enum.Font.SourceSansBold
+TextLabel_2.Text = "Made by Rayver | Thank You For Using My Scripts"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextSize = 19.000
+
+LoginGUI.Name = "LoginGUI"
+LoginGUI.Parent = ScreenGui
+LoginGUI.BackgroundColor3 = Color3.fromRGB(62, 62, 62)
+LoginGUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
+LoginGUI.BorderSizePixel = 0
+LoginGUI.Position = UDim2.new(0.342639595, 0, 0.237804875, 0)
+LoginGUI.Size = UDim2.new(0.314720809, 0, 0.522357702, 0)
+LoginGUI.Active = true
+LoginGUI.Draggable = true
+
+TextLabel_3.Parent = LoginGUI
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.BorderSizePixel = 0
+TextLabel_3.Position = UDim2.new(0, 0, 0.0272371471, 0)
+TextLabel_3.Size = UDim2.new(0.440860212, 0, 0.175710186, 0)
+TextLabel_3.Font = Enum.Font.SourceSansBold
+TextLabel_3.Text = "Log In"
+TextLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.TextSize = 41.000
+
+Close_2.Name = "Close"
+Close_2.Parent = LoginGUI
+Close_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Close_2.BackgroundTransparency = 1.000
+Close_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Close_2.BorderSizePixel = 0
+Close_2.Position = UDim2.new(0.876344085, 0, 0.0350194536, 0)
+Close_2.Size = UDim2.new(0.1046886, 0, 0.13275443, 0)
+Close_2.Font = Enum.Font.FredokaOne
+Close_2.Text = "X"
+Close_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Close_2.TextSize = 29.000
+Close_2.MouseButton1Down:Connect(function()
+	LoginGUI.Visible = false
+end)
+
+User.Name = "User"
+User.Parent = LoginGUI
+User.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+User.BorderColor3 = Color3.fromRGB(0, 0, 0)
+User.BorderSizePixel = 0
+User.Position = UDim2.new(0.0698923096, 0, 0.315175086, 0)
+User.Size = UDim2.new(0.518667161, 0, 0.159991756, 0)
+User.Font = Enum.Font.SourceSansBold
+User.PlaceholderText = "Username"
+User.Text = ""
+User.TextColor3 = Color3.fromRGB(255, 255, 255)
+User.TextSize = 33.000
+
+UICorner.CornerRadius = UDim.new(1, 15)
+UICorner.Parent = User
+
+Pass.Name = "Pass"
+Pass.Parent = LoginGUI
+Pass.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Pass.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Pass.BorderSizePixel = 0
+Pass.Position = UDim2.new(0.0698923096, 0, 0.533073843, 0)
+Pass.Size = UDim2.new(0.518667161, 0, 0.159991756, 0)
+Pass.Font = Enum.Font.SourceSansBold
+Pass.PlaceholderText = "Password"
+Pass.Text = ""
+Pass.TextColor3 = Color3.fromRGB(255, 255, 255)
+Pass.TextSize = 33.000
+
+UICorner_2.CornerRadius = UDim.new(1, 15)
+UICorner_2.Parent = Pass
+
+TextLabel_4.Parent = LoginGUI
+TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.BackgroundTransparency = 1.000
+TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_4.BorderSizePixel = 0
+TextLabel_4.Position = UDim2.new(0.610064626, 0, 0.202947363, 0)
+TextLabel_4.Size = UDim2.new(0.389935434, 0, 0.55191648, 0)
+TextLabel_4.Font = Enum.Font.DenkOne
+TextLabel_4.Text = "Join Discord Server For User And Password Discord Link: https://discord.com/channels/1311924038729203712/1312336748315152445"
+TextLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.TextSize = 19.000
+TextLabel_4.TextWrapped = true
+
+Login.Name = "Login"
+Login.Parent = LoginGUI
+Login.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Login.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Login.BorderSizePixel = 0
+Login.Position = UDim2.new(0.155913979, 0, 0.778210104, 0)
+Login.Size = UDim2.new(0.341247797, 0, 0.117190219, 0)
+Login.Font = Enum.Font.Highway
+Login.Text = "Log In"
+Login.TextColor3 = Color3.fromRGB(255, 255, 255)
+Login.TextSize = 24.000
+Login.MouseButton1Down:Connect(function()
+if User.Text == "userhere" and Pass.Text == "passhere" then
+	LoginGUI.Visible = false
+	OpenGui.Visible = true
+end
+end)
+
+TextLabel_5.Parent = LoginGUI
+TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_5.BackgroundTransparency = 1.000
+TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_5.BorderSizePixel = 0
+TextLabel_5.Position = UDim2.new(0.647849441, 0, 0.836575866, 0)
+TextLabel_5.Size = UDim2.new(0.35215053, 0, 0.140077814, 0)
+TextLabel_5.Font = Enum.Font.DenkOne
+TextLabel_5.Text = "Made by Rayver"
+TextLabel_5.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_5.TextSize = 17.000
+TextLabel_5.TextWrapped = true
+
+OpenGui.Name = "OpenGui"
+OpenGui.Parent = ScreenGui
+OpenGui.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+OpenGui.BorderColor3 = Color3.fromRGB(0, 0, 0)
+OpenGui.BorderSizePixel = 0
+OpenGui.Position = UDim2.new(0, 0, 0.617886186, 0)
+OpenGui.Size = UDim2.new(0.0846023709, 0, 0.0467479676, 0)
+OpenGui.Visible = false
+
+Open.Name = "Open"
+Open.Parent = OpenGui
+Open.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+Open.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Open.BorderSizePixel = 0
+Open.Size = UDim2.new(1, 0, 1.21739316, 0)
+Open.Font = Enum.Font.SourceSansBold
+Open.Text = "Open"
+Open.TextColor3 = Color3.fromRGB(255, 255, 255)
+Open.TextSize = 21.000
+Open.MouseButton1Down:Connect(function()
+	OpenGui.Visible = false
+	MainFrame.Visible = true
+end)
