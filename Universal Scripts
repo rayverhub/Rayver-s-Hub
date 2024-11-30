@@ -14,11 +14,11 @@ local Tab = Window:NewTab("Main")
 
 local Section = Tab:NewSection("LocalPlayer")
 
-Section:NewSlider("Speed", "You will get an extra Speed", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+Section:NewSlider("Speed", "You will get an extra Speed", 300, 0, function(s) -- 300 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
 end)
 
-Section:NewSlider("Jump Power", "You will get an extra Jump", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+Section:NewSlider("Jump Power", "You will get an extra Jump", 300, 0, function(s) -- 300 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
 end)
 
