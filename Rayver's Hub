@@ -95,3 +95,10 @@ local Tab = Window:MakeTab({
 local Section = Tab:AddSection({
 	Name = "Rayver's Hub"
 })
+
+Tab:AddButton({
+	Name = "Tower Of Hell By: Rayver",
+	Callback = function()
+      	 loadstring(game:HttpGet("https://raw.githubusercontent.com/rayverhub/Rayver-s-Hub/refs/heads/main/Tower%20Of%20Hell%20Scripts"))()
+  	end    
+})
