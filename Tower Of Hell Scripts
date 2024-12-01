@@ -364,7 +364,8 @@ TelFinish.Text = "Teleport to Finish"
 TelFinish.TextColor3 = Color3.fromRGB(255, 255, 255)
 TelFinish.TextSize = 21.000
 TelFinish.MouseButton1Down:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-77.3287048, 266.947968, -76.1133118, 0.709926963, -6.69277256e-08, 0.70427531, 9.46530889e-08, 1, -3.82035764e-10, -0.70427531, 6.69330547e-08, 0.709926963)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-0.797820508, 295.748596, 32.4729767, 0.999393702, 2.15664731e-09, -0.0348165371, -1.5637307e-09, 1, 1.70569745e-08, 0.0348165371, -1.6992189e-08, 0.999393702
+	)
 end)
 
 Close_3.Name = "Close"
@@ -407,5 +408,5 @@ TelLobby.Text = "Teleport to Lobby"
 TelLobby.TextColor3 = Color3.fromRGB(255, 255, 255)
 TelLobby.TextSize = 21.000
 TelLobby.MouseButton1Down:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-7.99700594, -8.34965611, 2.23355603, 0.159651414, 6.65655051e-08, 0.987173438, 3.9924025e-08, 1, -7.38871506e-08, -0.987173438, 5.12081257e-08, 0.159651414)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1.05131924, -4.25003433, -33.4197769, 0.999371469, -3.10251451e-08, -0.0354491621, 3.22381908e-08, 1, 3.36476518e-08, 0.0354491621, -3.47693216e-08, 0.999371469)
 end)
