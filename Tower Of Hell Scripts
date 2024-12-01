@@ -364,8 +364,7 @@ TelFinish.Text = "Teleport to Finish"
 TelFinish.TextColor3 = Color3.fromRGB(255, 255, 255)
 TelFinish.TextSize = 21.000
 TelFinish.MouseButton1Down:Connect(function()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-0.797820508, 295.748596, 32.4729767, 0.999393702, 2.15664731e-09, -0.0348165371, -1.5637307e-09, 1, 1.70569745e-08, 0.0348165371, -1.6992189e-08, 0.999393702
-	)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-19.4002056, 385.193329, -50.5265999, 0.123775102, 0.133748591, -0.983255327, 9.31502839e-08, 0.990874887, 0.134785056, 0.992310286, -0.0166831259, 0.122645624)
 end)
 
 Close_3.Name = "Close"
