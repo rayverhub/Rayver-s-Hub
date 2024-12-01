@@ -46,6 +46,7 @@ MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 MainFrame.BorderSizePixel = 0
 MainFrame.Position = UDim2.new(0.342639595, 0, 0.237804875, 0)
 MainFrame.Size = UDim2.new(0.314720809, 0, 0.522357702, 0)
+MainFrame.Visible = false
 MainFrame.Active = true
 MainFrame.Draggable = true
 
@@ -196,7 +197,7 @@ LoginGUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
 LoginGUI.BorderSizePixel = 0
 LoginGUI.Position = UDim2.new(0.342639595, 0, 0.237804875, 0)
 LoginGUI.Size = UDim2.new(0.314720809, 0, 0.522357702, 0)
-LoginGUI.Visible = false
+LoginGUI.Visible = true
 LoginGUI.Active = true
 LoginGUI.Draggable = true
 
