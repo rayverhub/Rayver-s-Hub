@@ -41,7 +41,10 @@
 ‎local Button = Tab:CreateButton({
 ‎   Name = "Alipato",
 ‎   Callback = function()
-‎   
+‎     local args = {
+	"Alipato"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
 ‎   end,
 ‎})
 ‎
@@ -99,81 +102,13 @@
 ‎   Name = "Shapeshift (For Pirena Only) ",
 ‎   CurrentValue = false,
 ‎   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-‎   Callback = function(Value)
+‎   Callback = function(Visible)
+      game.Players.LocalPlayer.PlayerGui.Pirena.Shapeshift.Visible
 ‎   -- The function that takes place when the toggle is pressed
 ‎   -- The variable (Value) is a boolean on whether the toggle is true or false
 ‎   end,
 ‎})
 ‎   }
-})
-
-local Tab = Window:CreateTab("Character", 4483362458) -- Title, Image
-local Button = Tab:CreateButton({
-   Name = "Alipato",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Avilan",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Agua",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Sari-a",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Anaca",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-})
-
-local Tab = Window:CreateTab("Ability", 4483362458) -- Title, Image
-local Button = Tab:CreateButton({
-   Name = "Earthquake",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Heal",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Mass Burn",
-   Callback = function()
-   -- The function that takes place when the button is pressed
-   end,
-})
-
-local Toggle = Tab:CreateToggle({
-   Name = "Shapeshift(For Pirena Only)",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(Visible)
-   game.Players.LocalPlayer.PlayerGui.Pirena.Shapeshift.Visible
-   -- The function that takes place when the toggle is pressed
-   -- The variable (Visible) is a boolean on whether the toggle is true or false
-   end,
 })
 
 local Tab = Window:CreateTab("Teleport", 4483362458) -- Title, Image
