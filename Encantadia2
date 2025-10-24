@@ -72,7 +72,7 @@ local Button = Tab:CreateButton({
    Name = "Sari-a",
    Callback = function()
         local args = {
-	"Saria"
+	"Sari-a"
 }
 game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
    end,
