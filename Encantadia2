@@ -41,7 +41,10 @@ local Tab = Window:CreateTab("Character", 4483362458) -- Title, Image
 local Button = Tab:CreateButton({
    Name = "Alipato",
    Callback = function()
-   -- The function that takes place when the button is pressed
+      local args = {
+	"Alipato"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
    end,
 })
 
