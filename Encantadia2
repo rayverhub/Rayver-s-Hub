@@ -10,7 +10,128 @@ local Window = Rayfield:CreateWindow({
 
    ToggleUIKeybind = "E", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
 
+   DisableRayfieldPrompts = false,local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Rayver Hub | Encantadia Chronicles Sang'gre 2",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "Encantadia Chronicles Sang'gre 2",
+   LoadingSubtitle = "by Rayver Hub",
+   ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
+   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   ToggleUIKeybind = "E", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
    DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = true, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Encantadia Chronicles Sanggre 2",
+      Subtitle = "Key System",
+      Note = "Key: encantadiaterra", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"encantadiaterra"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+local Tab = Window:CreateTab("Character", 4483362458) -- Title, Image
+local Button = Tab:CreateButton({
+   Name = "Alipato",
+   Callback = function()
+        local args = {
+	"Alipato"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Avilan",
+   Callback = function()
+        local args = {
+	"Avilan"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Agua",
+   Callback = function()
+        local args = {
+	"Agua"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Sari-a",
+   Callback = function()
+        local args = {
+	"Saria"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Anaca",
+   Callback = function()
+        local args = {
+	"Anaca"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
+   end,
+})
+
+local Tab = Window:CreateTab("Ability", 4483362458) -- Title, Image
+local Button = Tab:CreateButton({
+   Name = "Earthquake",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Heal",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Mass Burn",
+   Callback = function()
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Shapeshift(For Pirena Only)",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Visible)
+        game.Players.LocalPlayer.PlayerGui.Pirena.Shapeshift.Visible
+   -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
 
    ConfigurationSaving = {
@@ -117,7 +238,5 @@ local Toggle = Tab:CreateToggle({
    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Visible)
 	game.Players.LocalPlayer.PlayerGui.Pirena.Shapeshift.Visible
-   -- The function that takes place when the toggle is pressed
-   -- The variable (Value) is a boolean on whether the toggle is true or false
    end,
 })
