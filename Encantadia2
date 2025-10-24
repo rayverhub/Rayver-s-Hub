@@ -92,21 +92,31 @@ local Tab = Window:CreateTab("Ability", 4483362458) -- Title, Image
 local Button = Tab:CreateButton({
    Name = "Earthquake",
    Callback = function()
-   -- The function that takes place when the button is pressed
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("EarthquakeActivate"):FireServer()
    end,
 })
 
 local Button = Tab:CreateButton({
    Name = "Heal",
    Callback = function()
-   -- The function that takes place when the button is pressed
+        local args = {
+	"Self"
+}
+game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("LupaHealRequest"):FireServer(unpack(args))
    end,
 })
 
 local Button = Tab:CreateButton({
    Name = "Mass Burn",
    Callback = function()
-   -- The function that takes place when the button is pressed
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MassBurnEvent"):FireServer()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Shockwave",
+   Callback = function()
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MitenaShockwaveEvent"):FireServer()
    end,
 })
 
