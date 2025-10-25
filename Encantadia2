@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Rayver Hub | Encantadia Chronicles Sanggre 2",
+   Name = "Rayver Hub | Encantadia Chronicles Sanggre 2 v1",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Encantadia Chronicles Sanggre 2",
    LoadingSubtitle = "by Rayver",
@@ -38,6 +38,7 @@ local Window = Rayfield:CreateWindow({
 })
 
 local Tab = Window:CreateTab("Character", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Kambal Diwa ng Brilyante")
 local Button = Tab:CreateButton({
    Name = "Alipato",
    Callback = function()
@@ -78,6 +79,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("
    end,
 })
 
+local Section = Tab:CreateSection("Mineave")
 local Button = Tab:CreateButton({
    Name = "Anaca",
    Callback = function()
@@ -89,17 +91,11 @@ game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("
 })
 
 local Tab = Window:CreateTab("Abilities", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Lupa Abilities")
 local Button = Tab:CreateButton({
    Name = "Earthquake",
    Callback = function()
         game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("EarthquakeActivate"):FireServer()
-   end,
-})
-
-local Button = Tab:CreateButton({
-   Name = "Mass Burn",
-   Callback = function()
-        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MassBurnEvent"):FireServer()
    end,
 })
 
@@ -113,15 +109,16 @@ game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("
    end,
 })
 
+local Section = Tab:CreateSection("Apoy Abilities")
 local Button = Tab:CreateButton({
-   Name = "Shockwave",
+   Name = "Mass Burn",
    Callback = function()
-        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MitenaShockwave"):FireServer()
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MassBurnEvent"):FireServer()
    end,
 })
 
 local Button = Tab:CreateButton({
-   Name = "Shapeshift (Pirena Only!)",
+   Name = "Shapeshift (For Pirena Only!)",
    Callback = function()
         game.Players.LocalPlayer.PlayerGui.Pirena.Shapeshift.Visible = true
    end,
