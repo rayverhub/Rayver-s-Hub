@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Rayver Hub | Encantadia Chronicles Sanggre 2 v1",
+   Name = "Rayver Hub | Encantadia Chronicles Sanggre 2",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Encantadia Chronicles Sanggre 2",
    LoadingSubtitle = "by Rayver",
@@ -121,5 +121,13 @@ local Button = Tab:CreateButton({
    Name = "Shapeshift (For Pirena Only!)",
    Callback = function()
         game.Players.LocalPlayer.PlayerGui.Pirena.Shapeshift.Visible = true
+   end,
+})
+
+local Section = Tab:CreateSection("Shockwave")
+local Button = Tab:CreateButton({
+   Name = "Shockwave (Mitena)",
+   Callback = function()
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MitenaShockwave"):FireServer()
    end,
 })
