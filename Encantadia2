@@ -131,3 +131,38 @@ local Button = Tab:CreateButton({
         game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MitenaShockwave"):FireServer()
    end,
 })
+
+local Button = Tab:CreateButton({
+   Name = "Shockwave (Agua)",
+   Callback = function()
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("AguaShockwaveEvent"):FireServer()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Shockwave (Avilan)",
+   Callback = function()
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("AvilanShockwaveRemote"):FireServer()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Shockwave (Lira)",
+   Callback = function()
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("LiraShockwaveEvent"):FireServer()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Shockwave (Mira)",
+   Callback = function()
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("MiraShockwaveEvent"):FireServer()
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Shockwave (Terra)",
+   Callback = function()
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("TerraShockwaveEvent"):FireServer()
+   end,
+})
