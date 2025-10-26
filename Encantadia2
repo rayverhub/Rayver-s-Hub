@@ -40,7 +40,7 @@ local Window = Rayfield:CreateWindow({
 local Tab = Window:CreateTab("Character", 4483362458) -- Title, Image
 local Section = Tab:CreateSection("Kambal Diwa ng Brilyante")
 local Button = Tab:CreateButton({
-   Name = "Alipato",
+   Name = "Alipato (PATCHED)",
    Callback = function()
         local args = {
 "Alipato"
@@ -50,7 +50,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("
 })
 
 local Button = Tab:CreateButton({
-   Name = "Avilan",
+   Name = "Avilan (PATCHED)",
    Callback = function()
         local args = {
 "Avilan"
@@ -60,7 +60,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("
 })
 
 local Button = Tab:CreateButton({
-   Name = "Agua",
+   Name = "Agua (PATCHED)",
    Callback = function()
         local args = {
 "Agua"
@@ -70,7 +70,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("
 })
 
 local Button = Tab:CreateButton({
-   Name = "Sari-a",
+   Name = "Sari-a (PATCHED)",
    Callback = function()
         local args = {
 "Sari-a"
@@ -81,7 +81,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("
 
 local Section = Tab:CreateSection("Mineave")
 local Button = Tab:CreateButton({
-   Name = "Anaca",
+   Name = "Anaca (PATCHED)",
    Callback = function()
         local args = {
 "Anaca"
