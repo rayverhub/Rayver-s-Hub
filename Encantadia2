@@ -43,7 +43,7 @@ local Button = Tab:CreateButton({
    Name = "Alipato (PATCHED)",
    Callback = function()
         local args = {
-"Alipato"
+""
 }
 game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
    end,
@@ -53,7 +53,7 @@ local Button = Tab:CreateButton({
    Name = "Avilan (PATCHED)",
    Callback = function()
         local args = {
-"Avilan"
+""
 }
 game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
    end,
@@ -63,7 +63,7 @@ local Button = Tab:CreateButton({
    Name = "Agua (PATCHED)",
    Callback = function()
         local args = {
-"Agua"
+""
 }
 game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
    end,
@@ -73,7 +73,7 @@ local Button = Tab:CreateButton({
    Name = "Sari-a (PATCHED)",
    Callback = function()
         local args = {
-"Sari-a"
+""
 }
 game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
    end,
@@ -84,7 +84,7 @@ local Button = Tab:CreateButton({
    Name = "Anaca (PATCHED)",
    Callback = function()
         local args = {
-"Anaca"
+""
 }
 game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvents"):WaitForChild("ChooseCharacter"):FireServer(unpack(args))
    end,
