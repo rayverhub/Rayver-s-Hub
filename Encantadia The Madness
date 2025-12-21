@@ -594,7 +594,7 @@ game.Players.PlayerAdded:Connect(function()
             table.insert(list, player.Name)
         end
     end
-    Dropdown:Refresh(list)
+Dropdown:Refresh(list)
 end)
 
 -- 🔄 RESET when player leaves
@@ -605,5 +605,62 @@ game.Players.PlayerRemoving:Connect(function()
             table.insert(list, player.Name)
         end
     end
-    Dropdown:Refresh(list)
 end)
+
+-- Dropdown to select player
+local ImprisonDropdown = Tab:CreateDropdown({
+    Name = "Select Player",
+    Options = (function()
+        local list = {}
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer then
+                table.insert(list, player.Name)
+            end
+        end
+        return list
+    end)(),
+    CurrentOption = {},
+    MultipleOptions = false,
+    Flag = "ImprisonDropdown",
+    Callback = function() end, -- nothing happens on selection
+})
+
+-- Function to refresh dropdown options
+local function RefreshDropdown()
+    local list = {}
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer then
+            table.insert(list, player.Name)
+        end
+    end
+    ImprisonDropdown:Refresh(list)
+end
+
+-- Auto-refresh when players join/leave
+game.Players.PlayerAdded:Connect(RefreshDropdown)
+game.Players.PlayerRemoving:Connect(RefreshDropdown)
+
+-- Button to imprison selected player
+local Button = Tab:CreateButton({
+    Name = "Prison Player (Mitena)",
+    Callback = function()
+        local selectedName = ImprisonDropdown.CurrentOption[1]
+        if not selectedName then
+            warn("No player selected!")
+            return
+        end
+
+        local targetPlayer = game.Players:FindFirstChild(selectedName)
+        if not targetPlayer or not targetPlayer.Character then
+            warn("Player not found or no character!")
+            return
+        end
+
+        -- Confirm prompt
+        local confirm = true -- you can replace this with a proper UI prompt if your library supports
+        if confirm then
+            local args = { targetPlayer.Character }
+            game.ReplicatedStorage:WaitForChild("EsperantoImprisonmentEvent"):FireServer(unpack(args))
+        end
+    end,
+})
