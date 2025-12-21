@@ -614,6 +614,64 @@ game.Players.PlayerRemoving:Connect(function()
     end
 end)
 
+-- Store selected player
+local SelectedPlayerName = nil
+
+-- Dropdown to select player
+local Dropdown = Tab:CreateDropdown({
+    Name = "Select Player",
+    Options = (function()
+        local list = {}
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer then
+                table.insert(list, player.Name)
+            end
+        end
+        return list
+    end)(),
+    CurrentOption = {},
+    MultipleOptions = false,
+    Flag = "IceSufferTarget",
+    Callback = function(Options)
+        SelectedPlayerName = Options[1]
+    end,
+})
+
+-- Function to refresh dropdown
+local function RefreshDropdown()
+    local list = {}
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer then
+            table.insert(list, player.Name)
+        end
+    end
+    Dropdown:Refresh(list)
+end
+
+-- Auto refresh when players join/leave
+game.Players.PlayerAdded:Connect(RefreshDropdown)
+game.Players.PlayerRemoving:Connect(RefreshDropdown)
+
+-- Button to attack selected player
+local Button = Tab:CreateButton({
+    Name = "Ice Suffer",
+    Callback = function()
+        if not SelectedPlayerName then return end
+
+        local targetPlayer = game.Players:FindFirstChild(SelectedPlayerName)
+        if not targetPlayer then return end
+        if not targetPlayer.Character then return end
+
+        local args = {
+            targetPlayer.Character
+        }
+
+        game:GetService("ReplicatedStorage")
+            :WaitForChild("TargetAttackEvent2")
+            :FireServer(unpack(args))
+    end,
+})
+
 -- Dropdown to select player
 local ImprisonDropdown = Tab:CreateDropdown({
     Name = "Select Player",
