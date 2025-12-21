@@ -517,3 +517,60 @@ game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpac
    -- The function that takes place when the button is pressed
    end,
 })
+
+local Tab = Window:CreateTab("Others", 4483362458) -- Title, Image
+local Dropdown = Tab:CreateDropdown({
+   Name = "Teleport to Player",
+   Options = (function()
+        local list = {}
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer then
+                table.insert(list, player.Name)
+            end
+        end
+        return list
+   end)(),
+   CurrentOption = {},
+   MultipleOptions = false,
+   Flag = "Dropdown1",
+   Callback = function(Options)
+        local targetName = Options[1]
+        if not targetName then return end
+
+        local targetPlayer = game.Players:FindFirstChild(targetName)
+        if not targetPlayer then return end
+
+        local myChar = game.Players.LocalPlayer.Character
+        local targetChar = targetPlayer.Character
+        if not myChar or not targetChar then return end
+
+        local myHRP = myChar:FindFirstChild("HumanoidRootPart")
+        local targetHRP = targetChar:FindFirstChild("HumanoidRootPart")
+
+        if myHRP and targetHRP then
+            myHRP.CFrame = targetHRP.CFrame * CFrame.new(0, 0, -3)
+        end
+   end,
+})
+
+-- 🔄 RESET when player joins
+game.Players.PlayerAdded:Connect(function()
+    local list = {}
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer then
+            table.insert(list, player.Name)
+        end
+    end
+    Dropdown:Refresh(list)
+end)
+
+-- 🔄 RESET when player leaves
+game.Players.PlayerRemoving:Connect(function()
+    local list = {}
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer then
+            table.insert(list, player.Name)
+        end
+    end
+    Dropdown:Refresh(list)
+end)
