@@ -671,3 +671,61 @@ local Button = Tab:CreateButton({
         end
     end,
 })
+
+-- Selected player variable
+local SelectedPlayerName = nil
+
+-- Create Dropdown
+local Dropdown = Tab:CreateDropdown({
+    Name = "Select Player",
+    Options = (function()
+        local list = {}
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer then
+                table.insert(list, player.Name)
+            end
+        end
+        return list
+    end)(),
+    CurrentOption = {},
+    MultipleOptions = false,
+    Flag = "MagicTargetDropdown",
+    Callback = function(Options)
+        SelectedPlayerName = Options[1]
+    end,
+})
+
+-- Auto-refresh function
+local function RefreshDropdown()
+    local list = {}
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer then
+            table.insert(list, player.Name)
+        end
+    end
+    Dropdown:Refresh(list)
+end
+
+-- Refresh when players join/leave
+game.Players.PlayerAdded:Connect(RefreshDropdown)
+game.Players.PlayerRemoving:Connect(RefreshDropdown)
+
+-- Create Button
+local Button = Tab:CreateButton({
+    Name = "Cast Magic",
+    Callback = function()
+        if not SelectedPlayerName then return end
+
+        local targetPlayer = game.Players:FindFirstChild(SelectedPlayerName)
+        if not targetPlayer then return end
+        if not targetPlayer.Character then return end
+
+        local args = {
+            targetPlayer.Character
+        }
+
+        game:GetService("ReplicatedStorage")
+            :WaitForChild("HaliyaMagic22")
+            :FireServer(unpack(args))
+    end,
+})
