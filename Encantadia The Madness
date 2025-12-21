@@ -553,11 +553,9 @@ game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpac
 
 local Tab = Window:CreateTab("Others", 4483362458) -- Title, Image
 local Button = Tab:CreateButton({
-   Name = "Heal",
+   Name = "Blades (Mitena)",
    Callback = function()
-        game:GetService("ReplicatedStorage")
-            :WaitForChild("EffectHealEventA")
-            :FireServer()
+        game:GetService("ReplicatedStorage"):WaitForChild("FloatGrabAOEEvent"):FireServer()
    end,
 })
 
