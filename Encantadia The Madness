@@ -552,6 +552,15 @@ game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpac
 })
 
 local Tab = Window:CreateTab("Others", 4483362458) -- Title, Image
+local Button = Tab:CreateButton({
+   Name = "Heal",
+   Callback = function()
+        game:GetService("ReplicatedStorage")
+            :WaitForChild("EffectHealEventA")
+            :FireServer()
+   end,
+})
+
 local Dropdown = Tab:CreateDropdown({
    Name = "Teleport to Player",
    Options = (function()
@@ -594,7 +603,7 @@ game.Players.PlayerAdded:Connect(function()
             table.insert(list, player.Name)
         end
     end
-Dropdown:Refresh(list)
+    Dropdown:Refresh(list)
 end)
 
 -- 🔄 RESET when player leaves
