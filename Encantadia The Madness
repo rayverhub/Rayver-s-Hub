@@ -789,13 +789,12 @@ local Button = Tab:CreateButton({
 })
 
 local Section = Tab:CreateSection("Spectate")
--- Store selected player & spectate state
+-- Variables
 local SpectatePlayerName = nil
-local IsSpectating = false
 local Camera = workspace.CurrentCamera
 local OriginalSubject = Camera.CameraSubject
 
--- Dropdown to select player
+-- Dropdown
 local SpectateDropdown = Tab:CreateDropdown({
     Name = "Select Player to Spectate",
     Options = (function()
@@ -815,7 +814,7 @@ local SpectateDropdown = Tab:CreateDropdown({
     end,
 })
 
--- Refresh dropdown function
+-- Refresh function
 local function RefreshSpectateDropdown()
     local list = {}
     for _, player in ipairs(game.Players:GetPlayers()) do
@@ -826,7 +825,7 @@ local function RefreshSpectateDropdown()
     SpectateDropdown:Refresh(list)
 end
 
--- Auto refresh on join/leave
+-- Auto refresh
 game.Players.PlayerAdded:Connect(RefreshSpectateDropdown)
 game.Players.PlayerRemoving:Connect(RefreshSpectateDropdown)
 
@@ -834,22 +833,23 @@ game.Players.PlayerRemoving:Connect(RefreshSpectateDropdown)
 local SpectateButton = Tab:CreateButton({
     Name = "Spectate Player",
     Callback = function()
-        if not IsSpectating then
-            if not SpectatePlayerName then return end
+        if not SpectatePlayerName then return end
 
-            local targetPlayer = game.Players:FindFirstChild(SpectatePlayerName)
-            if not targetPlayer or not targetPlayer.Character then return end
+        local targetPlayer = game.Players:FindFirstChild(SpectatePlayerName)
+        if not targetPlayer or not targetPlayer.Character then return end
 
-            local humanoid = targetPlayer.Character:FindFirstChildOfClass("Humanoid")
-            if not humanoid then return end
+        local humanoid = targetPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if not humanoid then return end
 
-            OriginalSubject = Camera.CameraSubject
-            Camera.CameraSubject = humanoid
-            IsSpectating = true
-        else
-            -- Stop spectating
-            Camera.CameraSubject = OriginalSubject
-            IsSpectating = false
-        end
+        OriginalSubject = Camera.CameraSubject
+        Camera.CameraSubject = humanoid
+    end,
+})
+
+-- Unspectate button
+local UnspectateButton = Tab:CreateButton({
+    Name = "Unspectate",
+    Callback = function()
+        Camera.CameraSubject = OriginalSubject
     end,
 })
