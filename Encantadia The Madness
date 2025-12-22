@@ -608,6 +608,13 @@ game.Players.PlayerRemoving:Connect(function()
     end
 end)
 
+local Button = Tab:CreateButton({
+   Name = "Shield",
+   Callback = function()
+        game:GetService("ReplicatedStorage"):WaitForChild("KerosShield"):FireServer()
+   end,
+})
+
 local Section = Tab:CreateSection("Mitena")
 local Button = Tab:CreateButton({
    Name = "Blades (Mitena)",
