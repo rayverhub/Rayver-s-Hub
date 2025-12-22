@@ -790,17 +790,20 @@ local Button = Tab:CreateButton({
 
 local Section = Tab:CreateSection("Spectate")
 -- Variables
-local SpectatePlayerName = nil
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
-local OriginalSubject = Camera.CameraSubject
+
+local SpectateTargetName = nil
+local OriginalHumanoid = nil
 
 -- Dropdown
 local SpectateDropdown = Tab:CreateDropdown({
     Name = "Select Player to Spectate",
     Options = (function()
         local list = {}
-        for _, player in ipairs(game.Players:GetPlayers()) do
-            if player ~= game.Players.LocalPlayer then
+        for _, player in ipairs(Players:GetPlayers()) do
+            if player ~= LocalPlayer then
                 table.insert(list, player.Name)
             end
         end
@@ -810,46 +813,54 @@ local SpectateDropdown = Tab:CreateDropdown({
     MultipleOptions = false,
     Flag = "SpectateDropdown",
     Callback = function(Options)
-        SpectatePlayerName = Options[1]
+        SpectateTargetName = Options[1]
     end,
 })
 
 -- Refresh function
 local function RefreshSpectateDropdown()
     local list = {}
-    for _, player in ipairs(game.Players:GetPlayers()) do
-        if player ~= game.Players.LocalPlayer then
+    for _, player in ipairs(Players:GetPlayers()) do
+        if player ~= LocalPlayer then
             table.insert(list, player.Name)
         end
     end
     SpectateDropdown:Refresh(list)
 end
 
--- Auto refresh
-game.Players.PlayerAdded:Connect(RefreshSpectateDropdown)
-game.Players.PlayerRemoving:Connect(RefreshSpectateDropdown)
+Players.PlayerAdded:Connect(RefreshSpectateDropdown)
+Players.PlayerRemoving:Connect(RefreshSpectateDropdown)
 
--- Spectate button
+-- Spectate button (FIXED)
 local SpectateButton = Tab:CreateButton({
     Name = "Spectate Player",
     Callback = function()
-        if not SpectatePlayerName then return end
+        if not SpectateTargetName then return end
 
-        local targetPlayer = game.Players:FindFirstChild(SpectatePlayerName)
-        if not targetPlayer or not targetPlayer.Character then return end
+        local targetPlayer = Players:FindFirstChild(SpectateTargetName)
+        if not targetPlayer then return end
+        if not targetPlayer.Character then return end
 
-        local humanoid = targetPlayer.Character:FindFirstChildOfClass("Humanoid")
-        if not humanoid then return end
+        local targetHumanoid = targetPlayer.Character:FindFirstChildOfClass("Humanoid")
+        if not targetHumanoid then return end
 
-        OriginalSubject = Camera.CameraSubject
-        Camera.CameraSubject = humanoid
+        -- Save your humanoid
+        local myChar = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+        OriginalHumanoid = myChar:FindFirstChildOfClass("Humanoid")
+        if not OriginalHumanoid then return end
+
+        Camera.CameraSubject = targetHumanoid
     end,
 })
 
--- Unspectate button
+-- Unspectate button (FIXED)
 local UnspectateButton = Tab:CreateButton({
     Name = "Unspectate",
     Callback = function()
-        Camera.CameraSubject = OriginalSubject
+        local myChar = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+        local myHumanoid = myChar:FindFirstChildOfClass("Humanoid")
+        if myHumanoid then
+            Camera.CameraSubject = myHumanoid
+        end
     end,
 })
