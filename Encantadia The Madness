@@ -791,6 +791,78 @@ local Button = Tab:CreateButton({
     end,
 })
 
+local Section = Tab:CreateSection("Gargan")
+-- Store selected option
+local SelectedTarget = nil
+
+-- Dropdown
+local ChaosDropdown = Tab:CreateDropdown({
+    Name = "Select Target",
+    Options = (function()
+        local list = { "All Players" }
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer then
+                table.insert(list, player.Name)
+            end
+        end
+        return list
+    end)(),
+    CurrentOption = {},
+    MultipleOptions = false,
+    Flag = "ChaosTargetDropdown",
+    Callback = function(Options)
+        SelectedTarget = Options[1]
+    end,
+})
+
+-- Refresh dropdown function
+local function RefreshChaosDropdown()
+    local list = { "All Players" }
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer then
+            table.insert(list, player.Name)
+        end
+    end
+    ChaosDropdown:Refresh(list)
+end
+
+-- Auto refresh
+game.Players.PlayerAdded:Connect(RefreshChaosDropdown)
+game.Players.PlayerRemoving:Connect(RefreshChaosDropdown)
+
+-- Button
+local Button = Tab:CreateButton({
+    Name = "Start Chaos Suffer",
+    Callback = function()
+        if not SelectedTarget then return end
+
+        -- 🔥 All Players
+        if SelectedTarget == "All Players" then
+            for _, player in ipairs(game.Players:GetPlayers()) do
+                if player ~= game.Players.LocalPlayer and player.Character then
+                    local humanoid = player.Character:FindFirstChild("Humanoid")
+                    if humanoid then
+                        game:GetService("ReplicatedStorage")
+                            :WaitForChild("ChaosSuffer")
+                            :FireServer(humanoid)
+                    end
+                end
+            end
+        else
+            -- 🎯 Single Player
+            local targetPlayer = game.Players:FindFirstChild(SelectedTarget)
+            if not targetPlayer or not targetPlayer.Character then return end
+
+            local humanoid = targetPlayer.Character:FindFirstChild("Humanoid")
+            if not humanoid then return end
+
+            game:GetService("ReplicatedStorage")
+                :WaitForChild("ChaosSuffer")
+                :FireServer(humanoid)
+        end
+    end,
+})
+
 local Section = Tab:CreateSection("Spectate")
 -- Variables
 local Players = game:GetService("Players")
