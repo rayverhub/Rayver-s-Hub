@@ -552,13 +552,7 @@ game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpac
 })
 
 local Tab = Window:CreateTab("Others", 4483362458) -- Title, Image
-local Button = Tab:CreateButton({
-   Name = "Blades (Mitena)",
-   Callback = function()
-        game:GetService("ReplicatedStorage"):WaitForChild("FloatGrabAOEEvent"):FireServer()
-   end,
-})
-
+local Section = Tab:CreateSection("Main")
 local Dropdown = Tab:CreateDropdown({
    Name = "Teleport to Player",
    Options = (function()
@@ -614,6 +608,7 @@ game.Players.PlayerRemoving:Connect(function()
     end
 end)
 
+local Section = Tab:CreateSection("Mitena")
 local Button = Tab:CreateButton({
    Name = "Blades (Mitena)",
    Callback = function()
@@ -737,6 +732,7 @@ local Button = Tab:CreateButton({
     end,
 })
 
+local Section = Tab:CreateSection("Haliya")
 -- Selected player variable
 local SelectedPlayerName = nil
 
