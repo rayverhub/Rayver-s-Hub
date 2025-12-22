@@ -304,6 +304,28 @@ game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpac
    end,
 })
 
+local Button = Tab:CreateButton({
+   Name = "Santa Girl",
+   Callback = function()
+     local args = {
+	game:GetService("ReplicatedStorage"):WaitForChild("Morphs"):WaitForChild("Santa Girl")
+}
+game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpack(args))
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Agua",
+   Callback = function()
+     local args = {
+	game:GetService("ReplicatedStorage"):WaitForChild("Morphs"):WaitForChild("Agua")
+}
+game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpack(args))
+   -- The function that takes place when the button is pressed
+   end,
+})
+
 local Section = Tab:CreateSection("Hathoria")
 local Button = Tab:CreateButton({
    Name = "Lavanea",
@@ -479,6 +501,17 @@ local Button = Tab:CreateButton({
    Callback = function()
      local args = {
 	game:GetService("ReplicatedStorage"):WaitForChild("Morphs"):WaitForChild("Emre")
+}
+game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpack(args))
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
+   Name = "Santa",
+   Callback = function()
+     local args = {
+	game:GetService("ReplicatedStorage"):WaitForChild("Morphs"):WaitForChild("Santa")
 }
 game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpack(args))
    -- The function that takes place when the button is pressed
