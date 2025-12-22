@@ -1,7 +1,7 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Encantadia The Madness",
+   Name = "Encantadia The Madness | Free Scripts",
    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
    LoadingTitle = "Rayver Hub",
    LoadingSubtitle = "by Rayver",
@@ -613,6 +613,13 @@ game.Players.PlayerRemoving:Connect(function()
         end
     end
 end)
+
+local Button = Tab:CreateButton({
+   Name = "Blades (Mitena)",
+   Callback = function()
+        game:GetService("ReplicatedStorage"):WaitForChild("FloatGrabAOEEvent"):FireServer()
+   end,
+})
 
 -- Store selected player
 local SelectedPlayerName = nil
