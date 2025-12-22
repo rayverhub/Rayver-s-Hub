@@ -787,3 +787,69 @@ local Button = Tab:CreateButton({
             :FireServer(unpack(args))
     end,
 })
+
+local Section = Tab:CreateSection("Spectate")
+-- Store selected player & spectate state
+local SpectatePlayerName = nil
+local IsSpectating = false
+local Camera = workspace.CurrentCamera
+local OriginalSubject = Camera.CameraSubject
+
+-- Dropdown to select player
+local SpectateDropdown = Tab:CreateDropdown({
+    Name = "Select Player to Spectate",
+    Options = (function()
+        local list = {}
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer then
+                table.insert(list, player.Name)
+            end
+        end
+        return list
+    end)(),
+    CurrentOption = {},
+    MultipleOptions = false,
+    Flag = "SpectateDropdown",
+    Callback = function(Options)
+        SpectatePlayerName = Options[1]
+    end,
+})
+
+-- Refresh dropdown function
+local function RefreshSpectateDropdown()
+    local list = {}
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer then
+            table.insert(list, player.Name)
+        end
+    end
+    SpectateDropdown:Refresh(list)
+end
+
+-- Auto refresh on join/leave
+game.Players.PlayerAdded:Connect(RefreshSpectateDropdown)
+game.Players.PlayerRemoving:Connect(RefreshSpectateDropdown)
+
+-- Spectate button
+local SpectateButton = Tab:CreateButton({
+    Name = "Spectate Player",
+    Callback = function()
+        if not IsSpectating then
+            if not SpectatePlayerName then return end
+
+            local targetPlayer = game.Players:FindFirstChild(SpectatePlayerName)
+            if not targetPlayer or not targetPlayer.Character then return end
+
+            local humanoid = targetPlayer.Character:FindFirstChildOfClass("Humanoid")
+            if not humanoid then return end
+
+            OriginalSubject = Camera.CameraSubject
+            Camera.CameraSubject = humanoid
+            IsSpectating = true
+        else
+            -- Stop spectating
+            Camera.CameraSubject = OriginalSubject
+            IsSpectating = false
+        end
+    end,
+})
