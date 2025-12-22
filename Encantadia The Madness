@@ -615,18 +615,6 @@ local Button = Tab:CreateButton({
    end,
 })
 
-local Button = Tab:CreateButton({
-    Name = "Heal Player",
-    Callback = function()
-        local player = game.Players.LocalPlayer
-        local character = player.Character or player.CharacterAdded:Wait()
-        local humanoid = character:FindFirstChildOfClass("Humanoid")
-        if not humanoid then return end
-
-        humanoid.Health = humanoid.MaxHealth
-    end,
-})
-
 local Section = Tab:CreateSection("Mitena")
 local Button = Tab:CreateButton({
    Name = "Blades (Mitena)",
