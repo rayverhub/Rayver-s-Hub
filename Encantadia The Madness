@@ -863,6 +863,70 @@ local Button = Tab:CreateButton({
     end,
 })
 
+local Section = Tab:CreateSection("Avria")
+-- Store selected target
+local SelectedTarget = nil
+
+-- Dropdown to select target
+local MindControlDropdown = Tab:CreateDropdown({
+    Name = "Select Target",
+    Options = (function()
+        local list = { "All Players" }
+        for _, player in ipairs(game.Players:GetPlayers()) do
+            if player ~= game.Players.LocalPlayer then
+                table.insert(list, player.Name)
+            end
+        end
+        return list
+    end)(),
+    CurrentOption = {},
+    MultipleOptions = false,
+    Flag = "MindControlDropdown",
+    Callback = function(Options)
+        SelectedTarget = Options[1]
+    end,
+})
+
+-- Refresh dropdown when players join/leave
+local function RefreshMindControlDropdown()
+    local list = { "All Players" }
+    for _, player in ipairs(game.Players:GetPlayers()) do
+        if player ~= game.Players.LocalPlayer then
+            table.insert(list, player.Name)
+        end
+    end
+    MindControlDropdown:Refresh(list)
+end
+
+game.Players.PlayerAdded:Connect(RefreshMindControlDropdown)
+game.Players.PlayerRemoving:Connect(RefreshMindControlDropdown)
+
+-- Button to start Mind Control
+local Button = Tab:CreateButton({
+    Name = "Start Mind Control",
+    Callback = function()
+        if not SelectedTarget then return end
+
+        local ReplicatedStorage = game:GetService("ReplicatedStorage")
+        local Remote = ReplicatedStorage:WaitForChild("MindControl")
+
+        -- 🔥 All Players
+        if SelectedTarget == "All Players" then
+            for _, player in ipairs(game.Players:GetPlayers()) do
+                if player ~= game.Players.LocalPlayer and player.Character then
+                    Remote:FireServer(player.Character)
+                end
+            end
+        else
+            -- 🎯 Single Player
+            local targetPlayer = game.Players:FindFirstChild(SelectedTarget)
+            if not targetPlayer or not targetPlayer.Character then return end
+
+            Remote:FireServer(targetPlayer.Character)
+        end
+    end,
+})
+
 local Section = Tab:CreateSection("Spectate")
 -- Variables
 local Players = game:GetService("Players")
