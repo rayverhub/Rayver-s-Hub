@@ -914,6 +914,57 @@ local Button = Tab:CreateButton({
     end,
 })
 
+local Section = Tab:CreateSection("Keros")
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- RemoteEvent
+local DeathRemote = ReplicatedStorage:WaitForChild("Death")
+local selectedPlayer = nil
+
+-- Get all players
+local function getPlayerList()
+    local list = {}
+    for _, plr in ipairs(Players:GetPlayers()) do
+        table.insert(list, plr.Name)
+    end
+    return list
+end
+
+-- Dropdown
+local Dropdown = Tab:CreateDropdown({
+    Name = "Select Player",
+    Options = getPlayerList(),
+    CurrentOption = {},
+    MultipleOptions = false,
+    Flag = "DeathDropdown",
+    Callback = function(option)
+        selectedPlayer = option[1]
+    end,
+})
+
+-- Auto-refresh when players join or leave
+Players.PlayerAdded:Connect(function()
+    Dropdown:Refresh(getPlayerList(), true)
+end)
+
+Players.PlayerRemoving:Connect(function()
+    Dropdown:Refresh(getPlayerList(), true)
+end)
+
+-- Button
+local Button = Tab:CreateButton({
+    Name = "Kill Player",
+    Callback = function()
+        if not selectedPlayer then return end
+        local target = Players:FindFirstChild(selectedPlayer)
+        if target and target.Character and target.Character:FindFirstChild("Humanoid") then
+            local args = {target.Character.Humanoid}
+            DeathRemote:FireServer(unpack(args))
+        end
+    end,
+})
+
 local Section = Tab:CreateSection("Avria")
 -- Store selected target
 local SelectedTarget = nil
