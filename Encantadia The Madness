@@ -979,16 +979,20 @@ local Button = Tab:CreateButton({
 })
 
 local Section = Tab:CreateSection("Bring")
+--[[ 
+ONE SCRIPT: Auto Remote + Dropdown + Bring Button
+Place this as a LocalScript inside your GUI (Tab system)
+Works ONLY in games you own
+]]
+
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local RunService = game:GetService("RunService")
+local Player = Players.LocalPlayer
 
---------------------------------------------------
--- SERVER: CREATE REMOTE + BRING LOGIC
---------------------------------------------------
+-- AUTO-CREATE RemoteEvent (server-side)
 if RunService:IsServer() then
     local BringRemote = ReplicatedStorage:FindFirstChild("BringPlayer")
-
     if not BringRemote then
         BringRemote = Instance.new("RemoteEvent")
         BringRemote.Name = "BringPlayer"
@@ -998,42 +1002,33 @@ if RunService:IsServer() then
     BringRemote.OnServerEvent:Connect(function(player, targetName)
         local char = player.Character
         if not char then return end
-
         local hrp = char:FindFirstChild("HumanoidRootPart")
         if not hrp then return end
 
         if targetName == "All Players" then
             for _, plr in ipairs(Players:GetPlayers()) do
-                if plr ~= player
-                    and plr.Character
-                    and plr.Character:FindFirstChild("HumanoidRootPart") then
-
+                if plr ~= player and plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") then
                     plr.Character.HumanoidRootPart.CFrame =
-                        hrp.CFrame * CFrame.new(3, 0, 3)
+                        hrp.CFrame * CFrame.new(math.random(2,5),0,math.random(2,5))
                 end
             end
         else
             local target = Players:FindFirstChild(targetName)
-            if target
-                and target.Character
-                and target.Character:FindFirstChild("HumanoidRootPart") then
-
+            if target and target.Character and target.Character:FindFirstChild("HumanoidRootPart") then
                 target.Character.HumanoidRootPart.CFrame =
-                    hrp.CFrame * CFrame.new(3, 0, 3)
+                    hrp.CFrame * CFrame.new(3,0,3)
             end
         end
     end)
-
-    return
+    return -- stop client code on server
 end
 
---------------------------------------------------
--- CLIENT: DROPDOWN + BUTTON
---------------------------------------------------
+-- CLIENT CODE
 local BringRemote = ReplicatedStorage:WaitForChild("BringPlayer")
 local selectedPlayer = "All Players"
 
-local function getPlayers()
+-- FUNCTION: Get all player names
+local function getPlayerList()
     local list = {"All Players"}
     for _, plr in ipairs(Players:GetPlayers()) do
         table.insert(list, plr.Name)
@@ -1041,9 +1036,10 @@ local function getPlayers()
     return list
 end
 
+-- CREATE DROPDOWN
 local Dropdown = Tab:CreateDropdown({
     Name = "Select Player",
-    Options = getPlayers(),
+    Options = getPlayerList(),
     CurrentOption = {"All Players"},
     MultipleOptions = false,
     Flag = "BringDropdown",
@@ -1052,14 +1048,15 @@ local Dropdown = Tab:CreateDropdown({
     end,
 })
 
+-- AUTO REFRESH WHEN PLAYERS JOIN/LEAVE
 Players.PlayerAdded:Connect(function()
-    Dropdown:Refresh(getPlayers(), true)
+    Dropdown:Refresh(getPlayerList(), true)
 end)
-
 Players.PlayerRemoving:Connect(function()
-    Dropdown:Refresh(getPlayers(), true)
+    Dropdown:Refresh(getPlayerList(), true)
 end)
 
+-- CREATE BUTTON
 local Button = Tab:CreateButton({
     Name = "Bring Player",
     Callback = function()
