@@ -978,6 +978,95 @@ local Button = Tab:CreateButton({
     end,
 })
 
+local Section = Tab:CreateSection("Bring")
+local Players = game:GetService("Players")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local RunService = game:GetService("RunService")
+
+--------------------------------------------------
+-- SERVER: CREATE REMOTE + BRING LOGIC
+--------------------------------------------------
+if RunService:IsServer() then
+    local BringRemote = ReplicatedStorage:FindFirstChild("BringPlayer")
+
+    if not BringRemote then
+        BringRemote = Instance.new("RemoteEvent")
+        BringRemote.Name = "BringPlayer"
+        BringRemote.Parent = ReplicatedStorage
+    end
+
+    BringRemote.OnServerEvent:Connect(function(player, targetName)
+        local char = player.Character
+        if not char then return end
+
+        local hrp = char:FindFirstChild("HumanoidRootPart")
+        if not hrp then return end
+
+        if targetName == "All Players" then
+            for _, plr in ipairs(Players:GetPlayers()) do
+                if plr ~= player
+                    and plr.Character
+                    and plr.Character:FindFirstChild("HumanoidRootPart") then
+
+                    plr.Character.HumanoidRootPart.CFrame =
+                        hrp.CFrame * CFrame.new(3, 0, 3)
+                end
+            end
+        else
+            local target = Players:FindFirstChild(targetName)
+            if target
+                and target.Character
+                and target.Character:FindFirstChild("HumanoidRootPart") then
+
+                target.Character.HumanoidRootPart.CFrame =
+                    hrp.CFrame * CFrame.new(3, 0, 3)
+            end
+        end
+    end)
+
+    return
+end
+
+--------------------------------------------------
+-- CLIENT: DROPDOWN + BUTTON
+--------------------------------------------------
+local BringRemote = ReplicatedStorage:WaitForChild("BringPlayer")
+local selectedPlayer = "All Players"
+
+local function getPlayers()
+    local list = {"All Players"}
+    for _, plr in ipairs(Players:GetPlayers()) do
+        table.insert(list, plr.Name)
+    end
+    return list
+end
+
+local Dropdown = Tab:CreateDropdown({
+    Name = "Select Player",
+    Options = getPlayers(),
+    CurrentOption = {"All Players"},
+    MultipleOptions = false,
+    Flag = "BringDropdown",
+    Callback = function(option)
+        selectedPlayer = option[1]
+    end,
+})
+
+Players.PlayerAdded:Connect(function()
+    Dropdown:Refresh(getPlayers(), true)
+end)
+
+Players.PlayerRemoving:Connect(function()
+    Dropdown:Refresh(getPlayers(), true)
+end)
+
+local Button = Tab:CreateButton({
+    Name = "Bring Player",
+    Callback = function()
+        BringRemote:FireServer(selectedPlayer)
+    end,
+})
+
 local Section = Tab:CreateSection("Spectate")
 -- Variables
 local Players = game:GetService("Players")
