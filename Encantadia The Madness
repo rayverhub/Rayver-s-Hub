@@ -918,24 +918,25 @@ local Section = Tab:CreateSection("Keros")
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
--- RemoteEvent
 local DeathRemote = ReplicatedStorage:WaitForChild("Death")
-local selectedPlayer = nil
+local selectedPlayer = "All Players" -- default selection
 
--- Get all players
-local function getPlayerList()
-    local list = {}
+-- Get all server players (excluding yourself) and add "All Players" option
+local function getServerPlayers()
+    local list = {"All Players"} -- Add All Players option
     for _, plr in ipairs(Players:GetPlayers()) do
-        table.insert(list, plr.Name)
+        if plr ~= Players.LocalPlayer then -- exclude yourself
+            table.insert(list, plr.Name)
+        end
     end
     return list
 end
 
--- Dropdown
+-- Create dropdown
 local Dropdown = Tab:CreateDropdown({
     Name = "Select Player",
-    Options = getPlayerList(),
-    CurrentOption = {},
+    Options = getServerPlayers(),
+    CurrentOption = {"All Players"},
     MultipleOptions = false,
     Flag = "DeathDropdown",
     Callback = function(option)
@@ -945,22 +946,27 @@ local Dropdown = Tab:CreateDropdown({
 
 -- Auto-refresh when players join or leave
 Players.PlayerAdded:Connect(function()
-    Dropdown:Refresh(getPlayerList(), true)
+    Dropdown:Refresh(getServerPlayers(), true)
 end)
-
 Players.PlayerRemoving:Connect(function()
-    Dropdown:Refresh(getPlayerList(), true)
+    Dropdown:Refresh(getServerPlayers(), true)
 end)
 
--- Button
+-- Button to fire Death remote
 local Button = Tab:CreateButton({
     Name = "Kill Player",
     Callback = function()
-        if not selectedPlayer then return end
-        local target = Players:FindFirstChild(selectedPlayer)
-        if target and target.Character and target.Character:FindFirstChild("Humanoid") then
-            local args = {target.Character.Humanoid}
-            DeathRemote:FireServer(unpack(args))
+        if selectedPlayer == "All Players" then
+            for _, plr in ipairs(Players:GetPlayers()) do
+                if plr ~= Players.LocalPlayer and plr.Character and plr.Character:FindFirstChild("Humanoid") then
+                    DeathRemote:FireServer(plr.Character.Humanoid)
+                end
+            end
+        else
+            local target = Players:FindFirstChild(selectedPlayer)
+            if target and target.Character and target.Character:FindFirstChild("Humanoid") then
+                DeathRemote:FireServer(target.Character.Humanoid)
+            end
         end
     end,
 })
