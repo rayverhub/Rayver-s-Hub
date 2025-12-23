@@ -574,6 +574,17 @@ game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpac
 })
 
 local Button = Tab:CreateButton({
+   Name = "Jack Frost",
+   Callback = function()
+     local args = {
+	game:GetService("ReplicatedStorage"):WaitForChild("Morphs"):WaitForChild("Jack Frost")
+}
+game:GetService("ReplicatedStorage"):WaitForChild("CharChange"):FireServer(unpack(args))
+   -- The function that takes place when the button is pressed
+   end,
+})
+
+local Button = Tab:CreateButton({
    Name = "Gargan",
    Callback = function()
      local args = {
